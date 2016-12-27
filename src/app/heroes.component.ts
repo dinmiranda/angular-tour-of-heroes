@@ -7,7 +7,6 @@ import { HeroService } from './hero.service';
   templateUrl: './heroes.component.html',
   styleUrls: ['./app.component.css'],
 })
-
 export class HeroesComponent implements OnInit {
   selectedHero: Hero;
   heroes: Hero[];
@@ -19,7 +18,7 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService.getHeroesSlowly().then(heroes => this.heroes = heroes);
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
 
   onSelect(hero: Hero): void {
