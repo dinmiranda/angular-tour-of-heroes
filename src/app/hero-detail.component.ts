@@ -1,23 +1,19 @@
-import { Hero } from './hero';
-// Keep the Input import for now, we'll remove it later:
-import { Component, Input, OnInit } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-
+import { Hero } from './hero';
 import { HeroService } from './hero.service';
-import 'rxjs/add/operator/switchMap';
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'my-hero-detail',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: ['./hero-detail.component.css'],
+  templateUrl: 'hero-detail.component.html',
+  styleUrls: ['hero-detail.component.css']
 })
-
 export class HeroDetailComponent implements OnInit {
-
-  @Input()
   hero: Hero;
+
   constructor(
     private heroService: HeroService,
     private route: ActivatedRoute,
@@ -30,13 +26,13 @@ export class HeroDetailComponent implements OnInit {
       .subscribe(hero => this.hero = hero);
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
   save(): void {
     this.heroService.update(this.hero)
       .then(() => this.goBack());
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }
